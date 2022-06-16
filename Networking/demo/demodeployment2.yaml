@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service2deployment
+  labels:
+    env: prod
+    app: service2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - name: mywebserver
+          image: nginx:1.17.3
+          ports:
+          - containerPort: 80

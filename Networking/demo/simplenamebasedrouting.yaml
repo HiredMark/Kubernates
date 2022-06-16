@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: namebasedrouting
+  annotations:
+    kubernates.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: "service1.example.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/service1"
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+  - host: "service2.example.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/service2"
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
